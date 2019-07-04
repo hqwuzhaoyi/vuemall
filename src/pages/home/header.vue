@@ -1,8 +1,9 @@
 <template>
     <div >
-        <me-navbar class="header">
+        <me-navbar class="header" title='title'>
           <i class="iconfont icon-scan" slot="left"></i>
-          <div slot="center">搜索框</div>
+          <!-- <div slot="center">搜索框</div>
+           -->
           <i class="iconfont icon-msg" slot="right"></i>
         </me-navbar>
     </div>
@@ -23,7 +24,7 @@
     @import "~assets/scss/mixins";
   .header {
     &.mine-navbar {
-        background-color: $header-bgc-translucent;
+        background-color:transparent;
     }
 
     .iconfont {

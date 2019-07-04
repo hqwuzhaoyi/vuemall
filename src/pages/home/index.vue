@@ -1,32 +1,45 @@
 <template>
-    <div class="home">
-        <header class="g-header-container">
-            <div>
-                <home-header></home-header>
-            </div>
-        </header>
-        <div class="g-backtop-container"></div>
-        <router-view></router-view>
-    </div>
+  <div class="home">
+    <header class="g-header-container">
+      <div>
+        <home-header></home-header>
+      </div>
+    </header>
+    <me-scroll>
+      <home-slider></home-slider>
+      <home-nav></home-nav>
+      <home-recommend></home-recommend>
+    </me-scroll>
+
+    <div class="g-backtop-container"></div>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
+  import MeScroll from 'base/scroll';
   import HomeHeader from './header';
-
+  import HomeSlider from './slider';
+  import HomeNav from './nav';
+  import HomeRecommend from './recommend';
   export default {
     name: 'Home',
     components: {
-      HomeHeader
+      HomeHeader,
+      HomeSlider,
+      MeScroll,
+      HomeNav,
+      HomeRecommend
     }
   };
 </script>
 
 <style lang="scss" scoped>
-    @import "~assets/scss/mixins";
-    .home {
-        overflow: hidden;
-        width: 100%;
-        height: 100%;
-        background-color: $bgc-theme;
-    }
+@import "~assets/scss/mixins";
+.home {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: $bgc-theme;
+}
 </style>
