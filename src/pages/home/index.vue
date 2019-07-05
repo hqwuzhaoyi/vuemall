@@ -5,10 +5,10 @@
         <home-header></home-header>
       </div>
     </header>
-    <me-scroll>
+    <me-scroll :updateDate='recommends' pullDown @pull-down="pullToRefresh">
       <home-slider></home-slider>
       <home-nav></home-nav>
-      <home-recommend></home-recommend>
+      <home-recommend @loaded="getRecommends"></home-recommend>
     </me-scroll>
 
     <div class="g-backtop-container"></div>
@@ -30,6 +30,24 @@
       MeScroll,
       HomeNav,
       HomeRecommend
+    },
+    data() {
+      return {
+        recommends: []
+      };
+    },
+    methods: {
+      updateScroll() {
+
+      },
+      getRecommends(data) {
+        this.recommends = data;
+      },
+      pullToRefresh(callback) {
+        setTimeout(() => {
+          callback();
+        }, 1000);
+      }
     }
   };
 </script>

@@ -14,7 +14,7 @@ const routes = [
     component: () => import('pages/home'),
     children: [{
       name: 'home-product',
-      path: '/product/:id',
+      path: 'product/:id',
       component: () => import('pages/product')
     }]
   },
@@ -31,7 +31,8 @@ const routes = [
     name: 'personal',
     path: '/personal',
     component: () => import('pages/personal')
-  }, {
+  },
+  {
     path: '*',
     redirect: '/home'
   }
