@@ -6,6 +6,7 @@
         :loop='loop'
         :interval='interval'
         :pagination='pagination'
+        :data= "sliders"
       v-else
     >
       <swiper-slide v-for="(item,index) in sliders" :key="index">
@@ -45,8 +46,13 @@
       this.getSliders();
     },
     methods: {
+      // API
+      update() {
+        return this.getSliders();
+      },
+
       getSliders() {
-        getHomeSlider().then(data => {
+        return getHomeSlider().then(data => {
           this.sliders = data;
         });
       }

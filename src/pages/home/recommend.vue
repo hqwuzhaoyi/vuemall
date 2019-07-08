@@ -4,7 +4,7 @@
     <div class="loading-container" v-if="recommends.length===0">
       <me-loading inline></me-loading>
     </div>
-    <ul class="recommend-list" v-else >
+    <ul class="recommend-list" v-else>
       <li class="recommend-item" v-for="(item, index) in recommends" :key="index">
         <router-link
           class="recommend-link"
@@ -35,7 +35,7 @@
   import MeLoading from 'base/loading';
   export default {
     name: 'HomeRecommend',
-    components: {MeLoading},
+    components: { MeLoading },
     data() {
       return {
         recommends: [],
@@ -47,15 +47,23 @@
       this.getRecommend();
     },
     methods: {
+      update() {
+        return this.getRecommend();
+      },
       getRecommend() {
-        if (this.curPage > this.totalPage) return;
-        getHomeRecommend(this.curPage).then(data => {
-          if (data) {
-            this.curPage++;
-            this.totalPage = data.totalPage;
-            this.recommends = this.recommends.concat(data.itemList);
-            this.$emit('loaded', this.recommends);
-          }
+        if (this.curPage > this.totalPage) {
+          return Promise.reject(new Error('没有更多了'));
+        }
+        return getHomeRecommend(this.curPage).then(data => {
+          return new Promise(resolve => {
+            if (data) {
+              this.curPage++;
+              this.totalPage = data.totalPage;
+              this.recommends = this.recommends.concat(data.itemList);
+              this.$emit('loaded', this.recommends);
+              resolve();
+            }
+          });
         });
       }
     }
@@ -109,7 +117,7 @@
     padding-top: 100%;
     position: relative;
     margin-bottom: 5px;
-    }
+  }
   &-img {
     width: 100%;
     height: 100%;
@@ -117,40 +125,40 @@
     top: 0;
     left: 0;
   }
-   &-name {
-      height: 36px;
-      padding: 0 5px;
-      margin-bottom: 8px;
-      line-height: 1.5;
-      @include multiline-ellipsis();
-    }
-
-    &-origPrice {
-      padding: 0 5px;
-      margin-bottom: 8px;
-      color: #ccc;
-    }
-
-    &-info {
-      @include flex-between();
-      padding: 0 5px;
-      margin-bottom: 8px;
-    }
-
-    &-price {
-      color: #e61414;
-    }
-
-    &-price-num {
-      font-size: 20px;
-    }
-
-    &-count {
-      color: #999;
-    }
+  &-name {
+    height: 36px;
+    padding: 0 5px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+    @include multiline-ellipsis();
   }
 
-  .loading-container {
-    padding-top: 100px;
+  &-origPrice {
+    padding: 0 5px;
+    margin-bottom: 8px;
+    color: #ccc;
   }
+
+  &-info {
+    @include flex-between();
+    padding: 0 5px;
+    margin-bottom: 8px;
+  }
+
+  &-price {
+    color: #e61414;
+  }
+
+  &-price-num {
+    font-size: 20px;
+  }
+
+  &-count {
+    color: #999;
+  }
+}
+
+.loading-container {
+  padding-top: 100px;
+}
 </style>
