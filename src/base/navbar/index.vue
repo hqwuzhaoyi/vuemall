@@ -9,9 +9,9 @@
     <div class="mine-navbar-right" v-if="$slots.right">
       <slot name="right"></slot>
     </div>
-    <h1 class="mine-navbar-title" v-if="title">
+    <!-- <h1 class="mine-navbar-title" v-if="title">
       <span class="mine-navbar-text" v-text="title"></span>
-    </h1>
+    </h1> -->
   </div>
 </template>
 

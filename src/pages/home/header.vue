@@ -1,19 +1,25 @@
 <template>
-
         <me-navbar class="header" title='title' v-show="visible">
           <i class="iconfont icon-scan" slot="left"></i>
-          <div slot="center">搜索框</div>
+          <me-search-box
+            placeholder="开学季有礼，五折起"
+            slot="center"
+            @query="getQuery"
+            fake
+            @click.native="goToSearch"
+          ></me-search-box>
           <i class="iconfont icon-msg" slot="right"></i>
         </me-navbar>
-
 </template>
 
 <script>
   import MeNavbar from 'base/navbar';
+  import MeSearchBox from 'base/search-box';
   export default {
     name: 'HomeHeader',
     components: {
-      MeNavbar
+      MeNavbar,
+      MeSearchBox
     },
     data() {
       return {
@@ -26,6 +32,12 @@
       },
       hide() {
         this.visible = false;
+      },
+      getQuery(val) {
+        console.log(val);
+      },
+      goToSearch() {
+        this.$router.push('/search');
       }
     }
   };

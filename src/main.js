@@ -2,13 +2,13 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import 'babel-polyfill';
-import fastclick from 'fastclick';
+// import fastclick from 'fastclick';
 import './assets/scss/index.scss';
 import 'swiper/dist/css/swiper.css';
 import vueLazyLoad from 'vue-lazyload';
 
 Vue.config.productionTip = false;
-fastclick.attach(document.body);
+// fastclick.attach(document.body);
 Vue.use(vueLazyLoad, {
   preLoad: 1,
   error: require('assets/img/error.png'),
