@@ -61,7 +61,9 @@
     },
     methods: {
       update() {
-        this.$refs.swiper && this.$refs.swiper.swiper.update();
+        this.$nextTick(() => {
+          this.$refs.swiper && this.$refs.swiper.swiper.update();
+        });
       },
       scrollToTop(speed, runCallbacks) {
         this.$refs.swiper &&
